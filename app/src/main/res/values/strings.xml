@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">D82Tool</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">D82TestTool</string>
+    <string name="settings">设置</string>
+    <string name="choose_dev">选择设备</string>
+    <string name="connected">已连接</string>
+    <string name="disconnected">未连接</string>
+    <string name="input_file_name">输入保存名字</string>
+    <string name="save">保存</string>
+    <string name="convert">转换</string>
+    <string name="frame_ratio">帧率</string>
+
+    <string name="change_name">修改名称</string>
+    <string name="change_name_prompt">请输入5字以内新名称</string>
+    <string name="confirm">确定</string>
+
+    <string name="dev_list">设备列表</string>
+    
+    <string name="fa_heart">&#xf004;</string>
+</resources>

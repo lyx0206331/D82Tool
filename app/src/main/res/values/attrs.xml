@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CheckableView">
+        <attr name="index" format="string" />
+        <attr name="name" format="string|reference" />
+        <attr name="value" format="string|reference" />
+    </declare-styleable>
+</resources>
