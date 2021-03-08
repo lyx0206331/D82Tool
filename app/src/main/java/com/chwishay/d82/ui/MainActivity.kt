@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.onNavDestinationSelected
 import com.chwishay.d82.R
 import com.chwishay.d82.databinding.ActivityMainBinding
@@ -33,9 +34,11 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.ACCESS_FINE_LOCATION
     )
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         if (BleManager.getInstance().isSupportBle) {
             showShortToast("设备不支持BLE")
         } else if (!BleManager.getInstance().isBlueEnable) {
@@ -64,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             object : PermissionUtil.IPermissionCallback {
                 override fun allowedPermissions() {
                     BleManager.getInstance().enableBluetooth()
+                    ((binding.navHostFragment as NavHostFragment).childFragmentManager.findFragmentById(R.id.dataFragment) as DataFragment).showBleListDialog()
                 }
 
                 override fun deniedPermissions() {

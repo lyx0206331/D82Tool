@@ -16,6 +16,9 @@
     <string name="confirm">确定</string>
 
     <string name="dev_list">设备列表</string>
+    <string name="connect">连接</string>
+    <string name="disconnect">断开</string>
+    <string name="rssi_unit">dB</string>
     
     <string name="fa_heart">&#xf004;</string>
 </resources>

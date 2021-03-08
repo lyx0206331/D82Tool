@@ -43,4 +43,6 @@ class DataFragment : Fragment() {
         }
         return binding.root
     }
+
+    fun showBleListDialog() {}
 }
