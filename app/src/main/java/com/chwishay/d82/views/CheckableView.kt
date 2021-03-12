@@ -14,6 +14,8 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.chwishay.d82.R
 import com.chwishay.d82.databinding.LayoutCheckableViewBinding
 import com.chwishay.d82.tools.showShortToast
@@ -49,7 +51,7 @@ class CheckableView @JvmOverloads constructor(context: Context, attrs: Attribute
     private val tvIndex: AppCompatTextView
     private val tvName: AppCompatTextView
     private val tvValue: AppCompatTextView
-    private var index: String? = null
+    var index: String? = null
         set(value) {
             field = value
             tvIndex.text = "$field."
@@ -72,7 +74,10 @@ class CheckableView @JvmOverloads constructor(context: Context, attrs: Attribute
         set(value) {
             field = value
             background = if (field) checkedDrawable else uncheckedDrawable
+            checkedLiveData.value = field
         }
+
+    val checkedLiveData = MutableLiveData(false)
 
     init {
         LayoutCheckableViewBinding.inflate(LayoutInflater.from(context), this, true).also {
@@ -114,6 +119,27 @@ class CheckableView @JvmOverloads constructor(context: Context, attrs: Attribute
         else {
             val o = other as CheckableView
             o.index == index
+        }
+    }
+}
+
+class MaxCheckableConstraintLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0): ConstraintLayout(context, attrs, defStyleAttr) {
+
+    companion object {
+        const val MAX_CHECKABLE_NUM = 5
+    }
+
+    private val checkedList = arrayListOf<CheckableView>()
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return when {
+            checkedList.size < MAX_CHECKABLE_NUM -> super.dispatchTouchEvent(ev)
+            checkedList.size == MAX_CHECKABLE_NUM -> {
+                false
+            }
+            else -> {
+                true
+            }
         }
     }
 }

@@ -6,8 +6,10 @@
     <string name="choose_dev">选择设备</string>
     <string name="connected">已连接</string>
     <string name="disconnected">未连接</string>
-    <string name="input_file_name">输入保存名字</string>
+    <string name="input_file_name">请输入文件名</string>
     <string name="save">保存</string>
+    <string name="start_save">开始保存</string>
+    <string name="stop_save">停止保存</string>
     <string name="convert">转换</string>
     <string name="frame_ratio">帧率</string>
 
@@ -16,9 +18,13 @@
     <string name="confirm">确定</string>
 
     <string name="dev_list">设备列表</string>
+    <string name="start_scan">开始搜索</string>
+    <string name="stop_scan">停止搜索</string>
+    <string name="connect_fail">连接失败</string>
+    <string name="innormal_disconnect">异常断开</string>
     <string name="connect">连接</string>
     <string name="disconnect">断开</string>
-    <string name="rssi_unit">dB</string>
+    <string name="rssi_unit">dBm</string>
     
     <string name="fa_heart">&#xf004;</string>
 </resources>

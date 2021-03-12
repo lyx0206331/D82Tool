@@ -13,9 +13,14 @@
 
     <color name="color1">#D2E3FC</color>
     <color name="translucent_dark">#80000000</color>
+    <color name="translucent_light">#80ffffff</color>
 
     <color name="yellow_ffff00">#ffff00</color>
     <color name="black_232323">#232323</color>
+    <color name="red_FE0000">#FE0000</color>
+    <color name="yellow_EAB11D">#EAB11D</color>
+    <color name="brown_D95218">#D95218</color>
+    <color name="green_01FD01">#01FD01</color>
 
     <color name="hint">#A5A5A5</color>
 </resources>

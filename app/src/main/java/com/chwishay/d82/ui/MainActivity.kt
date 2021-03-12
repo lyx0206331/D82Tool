@@ -8,8 +8,11 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentContainerView
+import androidx.fragment.app.findFragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.get
 import androidx.navigation.ui.onNavDestinationSelected
 import com.chwishay.d82.R
 import com.chwishay.d82.databinding.ActivityMainBinding
@@ -38,8 +41,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        if (BleManager.getInstance().isSupportBle) {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        if (!BleManager.getInstance().isSupportBle) {
             showShortToast("设备不支持BLE")
         } else if (!BleManager.getInstance().isBlueEnable) {
             BleManager.getInstance().enableBluetooth()
@@ -67,7 +70,8 @@ class MainActivity : AppCompatActivity() {
             object : PermissionUtil.IPermissionCallback {
                 override fun allowedPermissions() {
                     BleManager.getInstance().enableBluetooth()
-                    ((binding.navHostFragment as NavHostFragment).childFragmentManager.findFragmentById(R.id.dataFragment) as DataFragment).showBleListDialog()
+//                    (binding.navHostFragment.childFragmentManager.findFragmentById(R.id.dataFragment) as DataFragment).showBleListDialog()
+                    (supportFragmentManager.fragments[0].childFragmentManager.fragments[0] as DataFragment).showBleListDialog()
                 }
 
                 override fun deniedPermissions() {

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="test_btn_font">12sp</dimen>
+    <dimen name="test_small_font">9sp</dimen>
 </resources>

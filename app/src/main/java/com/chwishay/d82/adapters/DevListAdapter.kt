@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chwishay.d82.databinding.ItemDeviceListBinding
 import com.chwishay.d82.entity.BleDeviceInfo
+import com.chwishay.d82.tools.logE
 import com.clj.fastble.BleManager
 import com.clj.fastble.callback.BleGattCallback
 import com.clj.fastble.data.BleDevice
@@ -52,7 +53,6 @@ class DevListAdapter(private val connCallback: BleGattCallback): ListAdapter<Ble
     class DevViewHolder(private val binding: ItemDeviceListBinding, callback: BleGattCallback): RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
-                BleManager.getInstance().cancelScan()
                 binding.bleDev?.connectDev(callback)
             }
         }
@@ -72,6 +72,6 @@ private class BleDiffCallback: DiffUtil.ItemCallback<BleDeviceInfo>() {
     }
 
     override fun areContentsTheSame(oldItem: BleDeviceInfo, newItem: BleDeviceInfo): Boolean {
-        return oldItem == newItem
+        return oldItem.isConnected() == newItem.isConnected()
     }
 }

@@ -14,13 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{clickListener}"
-        android:background="@{bleDev.isConnected?@color/teal_200:@color/white}"
         android:padding="10dp">
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDevName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/test_btn_font"
+            android:textColor="@{bleDev.isConnected?@color/teal_200:@color/black_232323}"
             android:text="@{bleDev.dev.name}"
             tools:text="dev name"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/test_btn_font"
+            android:textColor="@{bleDev.isConnected?@color/teal_200:@color/black_232323}"
             android:text="@{bleDev.dev.mac}"
             tools:text="mac address"
             android:layout_marginTop="5dp"

@@ -1,2 +1,3 @@
+include ':FastBleLib'
 include ':app'
 rootProject.name = "D82Tool"

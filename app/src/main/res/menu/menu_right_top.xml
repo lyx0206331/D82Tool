@@ -5,6 +5,7 @@
         android:id="@+id/settingDest"
         android:icon="@drawable/ic_baseline_settings_48"
         android:menuCategory="container"
+        android:visible="false"
         app:showAsAction="ifRoom"
         android:title="@string/settings" />
 </menu>

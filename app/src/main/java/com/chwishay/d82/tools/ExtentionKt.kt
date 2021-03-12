@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import com.chwishay.d82.BuildConfig
 import java.io.File
 import java.text.SimpleDateFormat
@@ -106,7 +107,7 @@ fun Context.getVersionCode(): Int = packageManager.getPackageInfo(packageName, 0
  */
 fun Context.getVersionName(): String = packageManager.getPackageInfo(packageName, 0).versionName
 
-inline fun Context.getColor1(@ColorRes colorId: Int) = this.resources.getColor(colorId)
+inline fun Context.getColor1(@ColorRes colorId: Int) = ContextCompat.getColor(this, colorId)
 
 /**
  * 格式化日期字符串

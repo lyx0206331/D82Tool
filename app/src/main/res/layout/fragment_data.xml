@@ -31,25 +31,21 @@
                 android:id="@+id/btnChooseDev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxWidth="200dp"
                 android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="@string/choose_dev"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnConnState"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/disconnected"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintLeft_toRightOf="@id/btnChooseDev"
-                app:layout_constraintTop_toTopOf="parent" />
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etFileName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
+                android:hint="@string/input_file_name"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/btnConnState"
+                app:layout_constraintLeft_toRightOf="@id/btnChooseDev"
                 app:layout_constraintRight_toLeftOf="@id/tvSuffix"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -62,7 +58,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/etFileName"
                 app:layout_constraintRight_toLeftOf="@id/btnSave" />
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvFrameRatio"
+                android:id="@+id/tvTransSpeed"
                 android:layout_width="70dp"
                 android:layout_height="0dp"
                 android:gravity="center"
@@ -79,8 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="@string/save"
-                app:layout_constraintRight_toLeftOf="@id/tvFrameRatio"
+                android:text="@string/start_save"
+                app:layout_constraintRight_toLeftOf="@id/tvTransSpeed"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -604,9 +600,34 @@
             app:layout_constraintTop_toBottomOf="@id/line4" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRssi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="@dimen/test_small_font"
+            tools:text="rssi:-50dBm"
+            android:textStyle="italic"
+            android:background="@color/translucent_light"
+            app:layout_constraintRight_toRightOf="@id/tvOriginalData"
+            app:layout_constraintBottom_toBottomOf="@id/tvOriginalData" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTotalLen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:textSize="@dimen/test_small_font"
+            tools:text="total:1024B"
+            android:textStyle="italic"
+            android:background="@color/translucent_light"
+            app:layout_constraintRight_toLeftOf="@id/tvRssi"
+            app:layout_constraintBottom_toBottomOf="@id/tvRssi" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvColor1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="42.5dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:textSize="16sp"
@@ -619,6 +640,7 @@
             android:id="@+id/tvColor2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="42.5dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:textSize="16sp"
@@ -631,6 +653,7 @@
             android:id="@+id/tvColor3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="42.5dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:textSize="16sp"
@@ -643,6 +666,7 @@
             android:id="@+id/tvColor4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="42.5dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:textSize="16sp"
@@ -655,6 +679,7 @@
             android:id="@+id/tvColor5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="42.5dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:textSize="16sp"
