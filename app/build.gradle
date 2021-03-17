@@ -52,7 +52,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.alibaba:fastjson:1.2.75'
     implementation project(path: ':FastBleLib')
+    implementation 'com.tencent:mmkv-static:1.2.7'
 //    implementation 'com.clj.fastble:FastBleLib:2.3.4'
 
     testImplementation 'junit:junit:4.13.2'

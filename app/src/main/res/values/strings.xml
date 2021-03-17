@@ -14,7 +14,7 @@
     <string name="frame_ratio">帧率</string>
 
     <string name="change_name">修改名称</string>
-    <string name="change_name_prompt">请输入5字以内新名称</string>
+    <string name="change_name_prompt">请输入新名称</string>
     <string name="confirm">确定</string>
 
     <string name="dev_list">设备列表</string>

@@ -2,8 +2,10 @@ package com.chwishay.d82
 
 import android.app.Application
 import android.graphics.Typeface
+import com.chwishay.d82.tools.logE
 import com.clj.fastble.BleManager
 import com.clj.fastble.BuildConfig
+import com.tencent.mmkv.MMKV
 
 //                       _ooOoo_
 //                      o8888888o
@@ -36,6 +38,10 @@ class D82Application: Application() {
     override fun onCreate() {
         super.onCreate()
 //        Typeface.createFromAsset(assets, "font/fontawesome-webfont.ttf")
+
+        val rootDir = MMKV.initialize(this)
+
+        "MMKV_ROOTDIR".logE("mmkv root dir:$rootDir")
 
         initBle()
     }

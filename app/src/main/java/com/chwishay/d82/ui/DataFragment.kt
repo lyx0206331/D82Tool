@@ -1,19 +1,13 @@
 package com.chwishay.d82.ui
 
 import android.bluetooth.BluetoothGatt
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.method.ScrollingMovementMethod
 import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.TextView
-import androidx.annotation.ColorInt
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +17,8 @@ import com.chwishay.d82.R
 import com.chwishay.d82.databinding.FragmentDataBinding
 import com.chwishay.d82.entity.BleDeviceInfo
 import com.chwishay.d82.tools.*
+import com.chwishay.d82.tools.D82ProtocolUtil.getExoParams
+import com.chwishay.d82.tools.D82ProtocolUtil.getParamByIndex
 import com.chwishay.d82.tools.D82ProtocolUtil.parseImuData
 import com.chwishay.d82.viewmodels.D82ViewModel
 import com.chwishay.d82.views.CheckableView
@@ -34,19 +30,9 @@ import com.clj.fastble.callback.BleWriteCallback
 import com.clj.fastble.data.BleDevice
 import com.clj.fastble.exception.BleException
 import com.clj.fastble.utils.HexUtil
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.components.YAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.github.mikephil.charting.utils.ColorTemplate
+import com.tencent.mmkv.MMKV
 import kotlinx.android.synthetic.main.fragment_data.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -66,6 +52,14 @@ class DataFragment : Fragment() {
     private lateinit var binding: FragmentDataBinding
 
     private var scheduledExecutorService = Executors.newScheduledThreadPool(1)
+
+    private val colors by lazy { arrayOf(ContextCompat.getColor(requireContext(), R.color.black),
+        ContextCompat.getColor(requireContext(), R.color.teal_200),
+        ContextCompat.getColor(requireContext(), R.color.titleText),
+        ContextCompat.getColor(requireContext(), R.color.purple_200),
+        ContextCompat.getColor(requireContext(), R.color.yellow_ffff00)) }
+
+    private val mmkv by lazy { MMKV.defaultMMKV() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,7 +102,8 @@ class DataFragment : Fragment() {
                     }
                 }
             }
-            b.tvOriginalData.movementMethod = ScrollingMovementMethod.getInstance()
+            initNames(b)
+            b.tvOriginalData.setScrollable()
             b.chart.init()
 
             filterVM.connectedDev.observe(viewLifecycleOwner) {
@@ -120,57 +115,35 @@ class DataFragment : Fragment() {
                 }
             }
             filters.observe(viewLifecycleOwner) {
-                tvColor1.isInvisible = true
-                tvColor2.isInvisible = true
-                tvColor3.isInvisible = true
-                tvColor4.isInvisible = true
-                tvColor5.isInvisible = true
-                when(it.size) {
-                    0 -> { }
-                    1 -> {
-                        tvColor1.isVisible = true
-                        tvColor1.text = "${it[0].index}:"
-                    }
-                    2 -> {
-                        tvColor1.isVisible = true
-                        tvColor2.isVisible = true
-                        tvColor1.text = "${it[0].index}:"
-                        tvColor2.text = "${it[1].index}:"
-                    }
-                    3 -> {
-                        tvColor1.isVisible = true
-                        tvColor2.isVisible = true
-                        tvColor3.isVisible = true
-                        tvColor1.text = "${it[0].index}:"
-                        tvColor3.text = "${it[1].index}:"
-                        tvColor3.text = "${it[2].index}:"
-                    }
-                    4 -> {
-                        tvColor1.isVisible = true
-                        tvColor2.isVisible = true
-                        tvColor3.isVisible = true
-                        tvColor4.isVisible = true
-                        tvColor1.text = "${it[0].index}:"
-                        tvColor2.text = "${it[1].index}:"
-                        tvColor3.text = "${it[2].index}:"
-                        tvColor4.text = "${it[3].index}:"
-                    }
-                    5 -> {
-                        tvColor1.isVisible = true
-                        tvColor2.isVisible = true
-                        tvColor3.isVisible = true
-                        tvColor4.isVisible = true
-                        tvColor5.isVisible = true
-                        tvColor1.text = "${it[0].index}:"
-                        tvColor2.text = "${it[1].index}:"
-                        tvColor3.text = "${it[2].index}:"
-                        tvColor4.text = "${it[3].index}:"
-                        tvColor5.text = "${it[4].index}:"
-                    }
-                    else -> {
-                        context?.showShortToast("最多展示5条曲线")
-                        it[5].isChecked = false
-                    }
+                binding.chart.lineData.clearValues()
+            }
+            val attrs = arrayListOf<ChartAttr>()
+            filterVM.bleData.observe(viewLifecycleOwner) {
+                it?.also {
+//                    binding.chart.addEntry(it)
+                    appendData(
+                        binding.tvOriginalData,
+                        HexUtil.formatHexString(it, true)
+                    )
+                    it.parseImuData()?.resultList.takeIf {  entities ->
+                        !entities.isNullOrEmpty() }?.run { this[0] }
+                        ?.let { entity ->
+                            val params = getExoParams(entity)
+//                            "params".logE("params:$params")
+//                            binding.chart.drawSet(arrayListOf(ChartAttr(0, getParamByIndex(params, 0).toFloat(), colors[0], "exoMode"), ChartAttr(1, getParamByIndex(params, 1).toFloat(), colors[1], "gradeSitStand")))
+//                            filters.value?.mapIndexed { index, checkableView -> ChartAttr(checkableView.index, getParamByIndex(params, checkableView.index-1).toFloat(), colors[index], "${checkableView.name}") }?.also { attrs ->
+////                                "checkedView".logE("checkedSize:${attrs.size}")
+//                                binding.chart.drawSet(attrs)
+//                            }
+                            updateValues(params)
+                            attrs.clear()
+                            filters.value?.forEachIndexed { index, checkableView ->
+                                attrs.add(ChartAttr(checkableView.index, getParamByIndex(params, checkableView.index-1).toFloat(), colors[index], "${checkableView.name}"))
+                            }
+                            if (attrs.size > 0) {
+                                binding.chart.drawSet(attrs)
+                            }
+                        }
                 }
             }
             b.cv1.updateUI()
@@ -217,6 +190,98 @@ class DataFragment : Fragment() {
         return binding.root
     }
 
+    private fun initNames(binding: FragmentDataBinding) {
+        binding.cv1.name = mmkv?.decodeString("1", "exoMode")
+        binding.cv2.name = mmkv?.decodeString("2", "gradeSitStand")
+        binding.cv3.name = mmkv?.decodeString("3", "gradeStandForce")
+        binding.cv4.name = mmkv?.decodeString("4", "gradeFlexAngle")
+        binding.cv5.name = mmkv?.decodeString("5", "gradeAcc")
+        binding.cv6.name = mmkv?.decodeString("6", "gradeWalkCadence")
+        binding.cv7.name = mmkv?.decodeString("7", "walkPhase")
+        binding.cv8.name = mmkv?.decodeString("8", "walkGait")
+        binding.cv9.name = mmkv?.decodeString("9", "gaitThighImuLR")
+        binding.cv10.name = mmkv?.decodeString("10", "gaitSitStand")
+        binding.cv11.name = mmkv?.decodeString("11", "targetJointT")
+        binding.cv12.name = mmkv?.decodeString("12", "targetMotorI")
+        binding.cv13.name = mmkv?.decodeString("13", "currentMotorI")
+        binding.cv14.name = mmkv?.decodeString("14", "targetMotorV")
+        binding.cv15.name = mmkv?.decodeString("15", "currentMotorV")
+        binding.cv16.name = mmkv?.decodeString("16", "targetMotorP")
+        binding.cv17.name = mmkv?.decodeString("17", "currentMotorP")
+        binding.cv18.name = mmkv?.decodeString("18", "currentJointP")
+        binding.cv19.name = mmkv?.decodeString("19", "currentJointV")
+        binding.cv20.name = mmkv?.decodeString("20", "batteryStable")
+        binding.cv21.name = mmkv?.decodeString("21", "badThighVelY")
+        binding.cv22.name = mmkv?.decodeString("22", "badThighAngP")
+        binding.cv23.name = mmkv?.decodeString("23", "goodThighVelY")
+        binding.cv24.name = mmkv?.decodeString("24", "goodThighAngP")
+        binding.cv25.name = mmkv?.decodeString("25", "badThighAccX")
+        binding.cv26.name = mmkv?.decodeString("26", "goodThighAccX")
+        binding.cv27.name = mmkv?.decodeString("27", "goodThighAngR")
+        binding.cv28.name = mmkv?.decodeString("28", "sysStateJointKneeEncoder")
+        binding.cv29.name = mmkv?.decodeString("29", "sysStateBadSideImuT")
+        binding.cv30.name = mmkv?.decodeString("30", "sysStateGoodSideImuT")
+        binding.cv31.name = mmkv?.decodeString("31", "taskReadyMotorPV")
+        binding.cv32.name = mmkv?.decodeString("32", "taskReadyMotorI")
+        binding.cv33.name = mmkv?.decodeString("33", "connStateMotorPV")
+        binding.cv34.name = mmkv?.decodeString("34", "connStateMotorI")
+        binding.cv35.name = mmkv?.decodeString("35", "outRangeStateMotorPV")
+        binding.cv36.name = mmkv?.decodeString("36", "updateStateMotorI")
+        binding.cv37.name = mmkv?.decodeString("37", "jointStateJointEncWrong")
+        binding.cv38.name = mmkv?.decodeString("38", "jointStateJointPosJump")
+        binding.cv39.name = mmkv?.decodeString("39", "jointStateJointVelShake")
+        binding.cv40.name = mmkv?.decodeString("40", "jointStateMotorEncWrong")
+    }
+
+//    private fun updateName(index: Int, newName: String) {
+//        mmkv?.encode("$index", newName)
+//    }
+
+    private fun updateValues(
+        params: ExoParams
+    ) {
+        binding.cv1.value = "${params.exoMode}"
+        binding.cv2.value = "${params.gradeSitStand}"
+        binding.cv3.value = "${params.gradeStandForce}"
+        binding.cv4.value = "${params.gradeFlexAngle}"
+        binding.cv5.value = "${params.gradeAcc}"
+        binding.cv6.value = "${params.gradeWalkCadence}"
+        binding.cv7.value = "${params.walkPhase}"
+        binding.cv8.value = "${params.walkGait}"
+        binding.cv9.value = "${params.gaitThighImuLR}"
+        binding.cv10.value = "${params.gaitSitStand}"
+        binding.cv11.value = "${params.targetJointT}"
+        binding.cv12.value = "${params.targetMotorI}"
+        binding.cv13.value = "${params.currentMotorI}"
+        binding.cv14.value = "${params.targetMotorV}"
+        binding.cv15.value = "${params.currentMotorV}"
+        binding.cv16.value = "${params.targetMotorP}"
+        binding.cv17.value = "${params.currentMotorP}"
+        binding.cv18.value = "${params.currentJointP}"
+        binding.cv19.value = "${params.currentJointV}"
+        binding.cv20.value = "${params.batteryStable}"
+        binding.cv21.value = "${params.badThighVelY}"
+        binding.cv22.value = "${params.badThighAngP}"
+        binding.cv23.value = "${params.goodThighVelY}"
+        binding.cv24.value = "${params.goodThighAngP}"
+        binding.cv25.value = "${params.badThighAccX}"
+        binding.cv26.value = "${params.goodThighAccX}"
+        binding.cv27.value = "${params.goodThighAngR}"
+        binding.cv28.value = "${params.sysStateJointKneeEncoder}"
+        binding.cv29.value = "${params.sysStateBadSideImuT}"
+        binding.cv30.value = "${params.sysStateGoodSideImuT}"
+        binding.cv31.value = "${params.taskReadyMotorPV}"
+        binding.cv32.value = "${params.taskReadyMotorI}"
+        binding.cv33.value = "${params.connStateMotorPV}"
+        binding.cv34.value = "${params.connStateMotorI}"
+        binding.cv35.value = "${params.outRangeStateMotorPV}"
+        binding.cv36.value = "${params.updateStateMotorI}"
+        binding.cv37.value = "${params.jointStateJointEncWrong}"
+        binding.cv38.value = "${params.jointStateJointPosJump}"
+        binding.cv39.value = "${params.jointStateJointVelShake}"
+        binding.cv40.value = "${params.jointStateMotorEncWrong}"
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         scheduledExecutorService.shutdown()
@@ -258,6 +323,14 @@ class DataFragment : Fragment() {
     }
 
     private fun CheckableView.updateUI() {
+        clickStrategy = {
+            if (filters.value?.size.orDefault() >= 5 && !isChecked) {
+                context?.showShortToast("最多展示5条曲线")
+                false
+            } else {
+                true
+            }
+        }
         checkedLiveData.observe(viewLifecycleOwner) {
             if (it) {
                 filters.value?.add(this)
@@ -266,93 +339,6 @@ class DataFragment : Fragment() {
             )
             filters.value = filters.value
         }
-    }
-
-    fun LineChart.init() {
-        this.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
-            override fun onValueSelected(e: Entry?, h: Highlight?) {}
-
-            override fun onNothingSelected() {}
-        })
-        this.description.isEnabled = true
-        this.setTouchEnabled(true)
-        this.isDragEnabled = true
-        this.setScaleEnabled(true)
-        this.setDrawGridBackground(false)
-        this.setPinchZoom(true)
-        this.setBackgroundColor(Color.LTGRAY)
-        this.data = LineData().apply { setValueTextColor(Color.WHITE) }
-        this.legend.apply {
-            form = Legend.LegendForm.LINE
-            textColor = Color.WHITE
-        }
-        this.xAxis.apply {
-            textColor = Color.WHITE
-            setDrawGridLines(false)
-            setAvoidFirstLastClipping(false)
-            isEnabled = true
-        }
-//            it.axisLeft.apply {
-//                textColor = Color.WHITE
-//                axisMaximum = 40f
-//                axisMinimum = -40f
-//                setDrawGridLines(true)
-//            }
-        //根据数据自动缩放展示最大最小值,不能设置axisLeft,否则自动缩放无效
-        this.isAutoScaleMinMaxEnabled = true
-        this.axisRight.isEnabled = false
-        this.description.isEnabled = false
-    }
-
-    fun LineChart.addEntry(imuData: ByteArray) = this.data?.let { d ->
-        fun parseValue(value: UShort) = value.toFloat()
-
-        //        fun getGyrValue(gyr: UShort) = (gyr.toInt() - 32768) * 3.14f / 16.4f / 180
-        fun getDataSet(index: Int, @ColorInt color: Int, name: String) =
-            d.getDataSetByIndex(index) ?: LineDataSet(null, name).also { lds ->
-                lds.axisDependency = YAxis.AxisDependency.LEFT
-                lds.color = color
-                lds.setCircleColor(Color.WHITE)
-                lds.lineWidth = 1f
-                lds.circleRadius = 2f
-                lds.fillAlpha = 65
-                lds.fillColor = color
-                lds.highLightColor = Color.rgb(244, 177, 177)
-                lds.valueTextColor = Color.WHITE
-                lds.valueTextSize = 9f
-                lds.setDrawCircles(false)
-                d.addDataSet(lds)
-            }
-        imuData.parseImuData()?.resultList.takeIf { !it.isNullOrEmpty() }?.run { this[0] }
-            ?.let { entity ->
-                val value1Set = getDataSet(0, ColorTemplate.getHoloBlue(), "value1")
-//            val gyrX1Set = getDataSet(1, context.getColor1(R.color.green01FD01), "gyrX1")
-//            val accY1Set = getDataSet(2, context.getColor1(R.color.yellowFFFF00), "accY1")
-//            val gyrY1Set = getDataSet(3, context.getColor1(R.color.purple7E2E8D), "gyrY1")
-//            val accZ1Set = getDataSet(4, context.getColor1(R.color.colorPrimary), "accZ1")
-//            val gyrZ1Set = getDataSet(5, context.getColor1(R.color.redFE0000), "gyrZ1")
-                val value1 = parseValue(entity.value1)
-//            val gyrX1 = getGyrValue(entity.gyrX1)
-//            val accY1 = getAccValue(entity.accY1)
-//            val gyrY1 = getGyrValue(entity.gyrY1)
-//            val accZ1 = getAccValue(entity.accZ1)
-//            val gyrZ1 = getGyrValue(entity.gyrZ1)
-//            "IMU_Value".logE("accX1:$accX1, gyrX1:$gyrX1")
-                d.addEntry(Entry(value1Set.entryCount.toFloat(), value1), 0)
-//            d.addEntry(Entry(gyrX1Set.entryCount.toFloat(), gyrX1), 1)
-//            d.addEntry(Entry(accY1Set.entryCount.toFloat(), accY1), 2)
-//            d.addEntry(Entry(gyrY1Set.entryCount.toFloat(), gyrY1), 3)
-//            d.addEntry(Entry(accZ1Set.entryCount.toFloat(), accZ1), 4)
-//            d.addEntry(Entry(gyrZ1Set.entryCount.toFloat(), gyrZ1), 5)
-                d.notifyDataChanged()
-
-                this.notifyDataSetChanged()
-
-                this.setVisibleXRangeMaximum(1000f)
-
-                this.moveViewToX(d.entryCount.toFloat())
-
-            }
     }
 
     fun showBleListDialog() {
@@ -406,11 +392,12 @@ class DataFragment : Fragment() {
                             "${bleDeviceInfo.speed}B/s"
                         binding.tvTotalLen.text =
                             "总接收数据:${bleDeviceInfo.totalSize}B"
-                        binding.chart.addEntry(d)
-                        appendData(
-                            binding.tvOriginalData,
-                            HexUtil.formatHexString(d, true)
-                        )
+                        filterVM.bleData.value = d
+//                        binding.chart.addEntry(d)
+//                        appendData(
+//                            binding.tvOriginalData,
+//                            HexUtil.formatHexString(d, true)
+//                        )
                     }
                 }
             })

@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModel
 import com.chwishay.d82.R
 import com.chwishay.d82.databinding.LayoutCheckableViewBinding
 import com.chwishay.d82.tools.showShortToast
+import com.tencent.mmkv.MMKV
 
 //                       _ooOoo_
 //                      o8888888o
@@ -51,7 +52,7 @@ class CheckableView @JvmOverloads constructor(context: Context, attrs: Attribute
     private val tvIndex: AppCompatTextView
     private val tvName: AppCompatTextView
     private val tvValue: AppCompatTextView
-    var index: String? = null
+    var index: Int = 0
         set(value) {
             field = value
             tvIndex.text = "$field."
@@ -79,6 +80,8 @@ class CheckableView @JvmOverloads constructor(context: Context, attrs: Attribute
 
     val checkedLiveData = MutableLiveData(false)
 
+    var clickStrategy: (() -> Boolean) = { true }
+
     init {
         LayoutCheckableViewBinding.inflate(LayoutInflater.from(context), this, true).also {
             tvIndex = it.tvIndex
@@ -93,18 +96,21 @@ class CheckableView @JvmOverloads constructor(context: Context, attrs: Attribute
         uncheckedDrawable = resources.getDrawable(R.drawable.shape_unchecked, context.theme)
 
         context.obtainStyledAttributes(attrs, R.styleable.CheckableView).also {
-            index = it.getString(R.styleable.CheckableView_index)
+            index = it.getInt(R.styleable.CheckableView_index, 0)
             name = it.getString(R.styleable.CheckableView_name)
             value = it.getString(R.styleable.CheckableView_value)
             it.recycle()
         }
 
         setOnClickListener {
-            isChecked = !isChecked
+            if (clickStrategy()) {
+                isChecked = !isChecked
+            }
         }
         setOnLongClickListener {
             ChangeNameDialog(context) { dialog, newName ->
                 name = "$newName"
+                MMKV.defaultMMKV()?.encode("$index", newName)
                 dialog.dismiss()
             }.show()
             true

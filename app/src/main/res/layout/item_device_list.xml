@@ -17,15 +17,15 @@
         android:padding="10dp">
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDevName"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="100dp"
             android:textSize="@dimen/test_btn_font"
             android:textColor="@{bleDev.isConnected?@color/teal_200:@color/black_232323}"
             android:text="@{bleDev.dev.name}"
             tools:text="dev name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/tvRssi"/>
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMacAddr"

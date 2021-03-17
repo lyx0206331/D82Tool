@@ -39,4 +39,6 @@ class D82ViewModel: ViewModel() {
     val devicesLiveData = MutableLiveData<ArrayList<BleDeviceInfo>>(arrayListOf())
 
     val filterViewsLiveData = MutableLiveData<ArrayList<CheckableView>>(arrayListOf())
+
+    val bleData = MutableLiveData<ByteArray?>()
 }

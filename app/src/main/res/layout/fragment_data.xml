@@ -89,493 +89,503 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/clOperate" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clFilterCondition"
-            android:layout_width="match_parent"
+        <HorizontalScrollView
+            android:id="@+id/horScrollView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             app:layout_constraintTop_toBottomOf="@+id/clOperate"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" >
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clFilter1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent">
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:index="1"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="2"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv1"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="3"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv2"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="4"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv3"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="5"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv4"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="6"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv5"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:id="@+id/line1"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                android:background="@color/black_232323"
-                app:layout_constraintLeft_toRightOf="@id/clFilter1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintRight_toRightOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clFilter2"
-                android:layout_width="wrap_content"
+                android:id="@+id/clFilterCondition"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                app:layout_constraintLeft_toRightOf="@id/line1"
-                app:layout_constraintTop_toTopOf="parent">
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv7"
+                android:padding="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/clOperate"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" >
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clFilter1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:index="7"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv8"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent">
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:index="1"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="2"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv1"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="3"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv2"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="4"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv3"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="5"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv4"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="6"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv5"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="0.5dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/black_232323"
+                    app:layout_constraintLeft_toRightOf="@id/clFilter1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clFilter2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="8"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv7"
-                    app:layout_constraintTop_toBottomOf="@id/cv7"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv9"
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintLeft_toRightOf="@id/line1"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:index="7"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="8"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv7"
+                        app:layout_constraintTop_toBottomOf="@id/cv7"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="9"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv7"
+                        app:layout_constraintTop_toBottomOf="@id/cv8"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="10"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv7"
+                        app:layout_constraintTop_toBottomOf="@id/cv9"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="0.5dp"
+                    android:layout_height="0dp"
+                    android:layerType="software"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/black_232323"
+                    app:layout_constraintLeft_toRightOf="@id/clFilter2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clFilter3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="9"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv7"
-                    app:layout_constraintTop_toBottomOf="@id/cv8"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv10"
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintLeft_toRightOf="@id/line2"
+                    app:layout_constraintTop_toTopOf="parent" >
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:index="11"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="12"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv11"
+                        app:layout_constraintLeft_toRightOf="@id/cv11" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="13"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv11"
+                        app:layout_constraintLeft_toRightOf="@id/cv12" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="14"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv11"/>
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="15"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv14"
+                        app:layout_constraintLeft_toRightOf="@id/cv14" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="16"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv14"
+                        app:layout_constraintLeft_toRightOf="@id/cv15" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="17"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv14"/>
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="18"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv17"
+                        app:layout_constraintLeft_toRightOf="@id/cv17" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="19"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv17"
+                        app:layout_constraintLeft_toRightOf="@id/cv18" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="20"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv17"/>
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="21"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv20"
+                        app:layout_constraintLeft_toRightOf="@id/cv20" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="22"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv20"
+                        app:layout_constraintLeft_toRightOf="@id/cv21" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="23"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv20"/>
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="24"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv23"
+                        app:layout_constraintLeft_toRightOf="@id/cv23" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="25"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv23"
+                        app:layout_constraintLeft_toRightOf="@id/cv24" />
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="26"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cv23"/>
+
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="27"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintTop_toTopOf="@id/cv26"
+                        app:layout_constraintLeft_toRightOf="@id/cv26" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/line3"
+                    android:layout_width="0.5dp"
+                    android:layout_height="0dp"
+                    android:layerType="software"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/black_232323"
+                    app:layout_constraintLeft_toRightOf="@id/clFilter3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="10"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv7"
-                    app:layout_constraintTop_toBottomOf="@id/cv9"/>
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintLeft_toRightOf="@id/line3"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:index="28"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="29"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv28"
+                        app:layout_constraintTop_toBottomOf="@id/cv28"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="30"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv28"
+                        app:layout_constraintTop_toBottomOf="@id/cv29"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="31"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv28"
+                        app:layout_constraintTop_toBottomOf="@id/cv30"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="32"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv28"
+                        app:layout_constraintTop_toBottomOf="@id/cv31"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="33"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv28"
+                        app:layout_constraintTop_toBottomOf="@id/cv32"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="34"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv28"
+                        app:layout_constraintTop_toBottomOf="@id/cv33"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:index="35"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toRightOf="@id/cv28"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv36"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="36"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv35"
+                        app:layout_constraintTop_toBottomOf="@id/cv35"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="37"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv35"
+                        app:layout_constraintTop_toBottomOf="@id/cv36"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="38"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv35"
+                        app:layout_constraintTop_toBottomOf="@id/cv37"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv39"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="39"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv35"
+                        app:layout_constraintTop_toBottomOf="@id/cv38"/>
+                    <com.chwishay.d82.views.CheckableView
+                        android:id="@+id/cv40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:index="40"
+                        app:name="模式"
+                        app:value="--"
+                        app:layout_constraintLeft_toLeftOf="@id/cv35"
+                        app:layout_constraintTop_toBottomOf="@id/cv39"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:id="@+id/line2"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:layerType="software"
-                android:layout_marginStart="5dp"
-                android:background="@color/black_232323"
-                app:layout_constraintLeft_toRightOf="@id/clFilter2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clFilter3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                app:layout_constraintLeft_toRightOf="@id/line2"
-                app:layout_constraintTop_toTopOf="parent" >
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:index="11"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="12"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv11"
-                    app:layout_constraintLeft_toRightOf="@id/cv11" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="13"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv11"
-                    app:layout_constraintLeft_toRightOf="@id/cv12" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="14"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv11"/>
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="15"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv14"
-                    app:layout_constraintLeft_toRightOf="@id/cv14" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="16"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv14"
-                    app:layout_constraintLeft_toRightOf="@id/cv15" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="17"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv14"/>
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="18"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv17"
-                    app:layout_constraintLeft_toRightOf="@id/cv17" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="19"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv17"
-                    app:layout_constraintLeft_toRightOf="@id/cv18" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="20"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv17"/>
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="21"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv20"
-                    app:layout_constraintLeft_toRightOf="@id/cv20" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="22"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv20"
-                    app:layout_constraintLeft_toRightOf="@id/cv21" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="23"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv20"/>
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="24"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv23"
-                    app:layout_constraintLeft_toRightOf="@id/cv23" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="25"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv23"
-                    app:layout_constraintLeft_toRightOf="@id/cv24" />
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="26"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cv23"/>
-
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="27"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintTop_toTopOf="@id/cv26"
-                    app:layout_constraintLeft_toRightOf="@id/cv26" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <View
-                android:id="@+id/line3"
-                android:layout_width="0.5dp"
-                android:layout_height="0dp"
-                android:layerType="software"
-                android:layout_marginStart="5dp"
-                android:background="@color/black_232323"
-                app:layout_constraintLeft_toRightOf="@id/clFilter3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                app:layout_constraintLeft_toRightOf="@id/line3"
-                app:layout_constraintTop_toTopOf="parent">
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:index="28"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="29"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv28"
-                    app:layout_constraintTop_toBottomOf="@id/cv28"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv30"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="30"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv28"
-                    app:layout_constraintTop_toBottomOf="@id/cv29"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv31"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="31"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv28"
-                    app:layout_constraintTop_toBottomOf="@id/cv30"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv32"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="32"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv28"
-                    app:layout_constraintTop_toBottomOf="@id/cv31"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv33"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="33"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv28"
-                    app:layout_constraintTop_toBottomOf="@id/cv32"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv34"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="34"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv28"
-                    app:layout_constraintTop_toBottomOf="@id/cv33"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv35"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    app:index="35"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toRightOf="@id/cv28"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv36"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="36"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv35"
-                    app:layout_constraintTop_toBottomOf="@id/cv35"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv37"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="37"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv35"
-                    app:layout_constraintTop_toBottomOf="@id/cv36"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv38"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="38"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv35"
-                    app:layout_constraintTop_toBottomOf="@id/cv37"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv39"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="39"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv35"
-                    app:layout_constraintTop_toBottomOf="@id/cv38"/>
-                <com.chwishay.d82.views.CheckableView
-                    android:id="@+id/cv40"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:index="40"
-                    app:name="模式"
-                    app:value="--"
-                    app:layout_constraintLeft_toLeftOf="@id/cv35"
-                    app:layout_constraintTop_toBottomOf="@id/cv39"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </HorizontalScrollView>
 
         <View
             android:id="@+id/line4"
@@ -584,7 +594,7 @@
             android:background="@color/black_232323"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/clFilterCondition" />
+            app:layout_constraintTop_toBottomOf="@id/horScrollView" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvOriginalData"
@@ -623,80 +633,14 @@
             app:layout_constraintRight_toLeftOf="@id/tvRssi"
             app:layout_constraintBottom_toBottomOf="@id/tvRssi" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvColor1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="42.5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="1:"
-            android:drawableEnd="@drawable/shape_color_block_000000"
-            app:layout_constraintTop_toBottomOf="@id/tvOriginalData"
-            app:layout_constraintLeft_toLeftOf="@id/tvOriginalData" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvColor2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="42.5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="2:"
-            android:drawableEnd="@drawable/shape_color_block_03dac5"
-            app:layout_constraintTop_toBottomOf="@id/tvColor1"
-            app:layout_constraintLeft_toLeftOf="@id/tvOriginalData" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvColor3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="42.5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="3:"
-            android:drawableEnd="@drawable/shape_color_block_4789ee"
-            app:layout_constraintTop_toBottomOf="@id/tvColor2"
-            app:layout_constraintLeft_toLeftOf="@id/tvOriginalData" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvColor4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="42.5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="4:"
-            android:drawableEnd="@drawable/shape_color_block_bb86fc"
-            app:layout_constraintTop_toBottomOf="@id/tvColor3"
-            app:layout_constraintLeft_toLeftOf="@id/tvOriginalData" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvColor5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="42.5dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="5:"
-            android:drawableEnd="@drawable/shape_color_block_ffff00"
-            app:layout_constraintTop_toBottomOf="@id/tvColor4"
-            app:layout_constraintLeft_toLeftOf="@id/tvOriginalData" />
-
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/gray_B5"
-            app:layout_constraintLeft_toRightOf="@id/tvColor1"
-            app:layout_constraintTop_toTopOf="@id/tvColor1"
-            app:layout_constraintBottom_toBottomOf="@id/tvColor5"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            app:layout_constraintLeft_toLeftOf="@id/tvOriginalData"
+            app:layout_constraintTop_toBottomOf="@id/tvOriginalData"
             app:layout_constraintRight_toRightOf="@id/tvOriginalData" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
