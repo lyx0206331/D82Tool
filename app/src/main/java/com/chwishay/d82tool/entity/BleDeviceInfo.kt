@@ -1,9 +1,10 @@
-package com.chwishay.d82.entity
+package com.chwishay.d82tool.entity
 
+import android.bluetooth.BluetoothGatt
 import android.os.Environment
-import com.chwishay.d82.tools.D82ProtocolUtil.parseImuData
-import com.chwishay.d82.tools.formatDateString
-import com.chwishay.d82.tools.orDefault
+import com.chwishay.d82tool.tools.D82ProtocolUtil.parseImuData
+import com.chwishay.d82tool.tools.formatDateString
+import com.chwishay.d82tool.tools.orDefault
 import com.clj.fastble.BleManager
 import com.clj.fastble.callback.BleGattCallback
 import com.clj.fastble.data.BleDevice
@@ -14,7 +15,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.nio.ByteOrder
-import java.util.*
 
 //                       _ooOoo_
 //                      o8888888o
@@ -44,7 +44,19 @@ import java.util.*
  */
 data class BleDeviceInfo(val dev: BleDevice) {
     fun isConnected(): Boolean = BleManager.getInstance().isConnected(dev)
-    fun connectDev(callback: BleGattCallback) = BleManager.getInstance().connect(dev, callback)
+    fun connectDev(callback: BleGattCallback): BluetoothGatt = BleManager.getInstance().connect(dev, callback)
+
+    fun getShowName(): String = when (getSide()) {
+        0 -> {
+            "左侧"
+        }
+        1 -> {
+            "右侧"
+        }
+        else -> {
+            dev.name
+        }
+    }
 
 //    var serviceUUID: UUID? = null
 //    var notifyUUID: UUID? = null
@@ -106,7 +118,12 @@ data class BleDeviceInfo(val dev: BleDevice) {
     private var stopSaveTime = 0L
     var fileName: String = "${System.currentTimeMillis()}"
         set(value) {
-            field = "${value}_${startSaveTime.formatDateString("yyyy-MM-dd-HH_mm_ss")}"
+            val side = when(getSide()) {
+                0 -> "_l"
+                1 -> "_r"
+                else -> ""
+            }
+            field = "${value}_${startSaveTime.formatDateString("yyyy-MM-dd-HH_mm_ss")}$side"
         }
     var filePath: String? = null
 
@@ -126,6 +143,18 @@ data class BleDeviceInfo(val dev: BleDevice) {
      */
     fun startReceive() {
         startReceiveTime = System.currentTimeMillis()
+    }
+
+    fun getSide(): Int = when (dev.mac) {
+        "D4:2F:C8:2D:56:C7" -> {
+            0
+        }
+        "D4:2F:C8:2D:5B:F4" -> {
+            1
+        }
+        else -> {
+            -1
+        }
     }
 
     /**

@@ -1,23 +1,15 @@
-package com.chwishay.d82.ui
+package com.chwishay.d82tool.ui
 
 import android.Manifest
-import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentContainerView
-import androidx.fragment.app.findFragment
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.get
-import androidx.navigation.ui.onNavDestinationSelected
-import com.chwishay.d82.R
-import com.chwishay.d82.databinding.ActivityMainBinding
-import com.chwishay.d82.tools.PermissionUtil
-import com.chwishay.d82.tools.showShortToast
+import com.chwishay.d82tool.R
+import com.chwishay.d82tool.databinding.ActivityMainBinding
+import com.chwishay.d82tool.tools.PermissionUtil
+import com.chwishay.d82tool.tools.showShortToast
 import com.clj.fastble.BleManager
 import kotlinx.android.synthetic.main.activity_main.*
 

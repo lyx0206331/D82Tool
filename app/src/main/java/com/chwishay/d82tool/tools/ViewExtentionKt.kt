@@ -1,4 +1,4 @@
-package com.chwishay.d82.tools
+package com.chwishay.d82tool.tools
 
 import android.graphics.Color
 import android.text.method.ScrollingMovementMethod

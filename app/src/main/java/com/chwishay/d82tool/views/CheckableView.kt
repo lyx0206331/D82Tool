@@ -1,24 +1,16 @@
-package com.chwishay.d82.views
+package com.chwishay.d82tool.views
 
 import android.content.Context
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.ShapeDrawable
-import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
-import android.widget.Checkable
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.children
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.chwishay.d82.R
-import com.chwishay.d82.databinding.LayoutCheckableViewBinding
-import com.chwishay.d82.tools.showShortToast
+import com.chwishay.d82tool.R
+import com.chwishay.d82tool.databinding.LayoutCheckableViewBinding
 import com.tencent.mmkv.MMKV
 
 //                       _ooOoo_

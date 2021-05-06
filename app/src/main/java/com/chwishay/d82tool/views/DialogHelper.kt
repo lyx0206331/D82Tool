@@ -1,4 +1,4 @@
-package com.chwishay.d82.views
+package com.chwishay.d82tool.views
 
 import android.app.Dialog
 import android.bluetooth.BluetoothGatt
@@ -7,23 +7,19 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
-import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.chwishay.d82.R
-import com.chwishay.d82.adapters.DevListAdapter
-import com.chwishay.d82.databinding.DialogDeviceListBinding
-import com.chwishay.d82.entity.BleDeviceInfo
-import com.chwishay.d82.tools.logE
-import com.chwishay.d82.tools.showShortToast
-import com.chwishay.d82.viewmodels.D82ViewModel
+import com.chwishay.d82tool.R
+import com.chwishay.d82tool.adapters.DevListAdapter
+import com.chwishay.d82tool.databinding.DialogDeviceListBinding
+import com.chwishay.d82tool.entity.BleDeviceInfo
+import com.chwishay.d82tool.tools.showShortToast
+import com.chwishay.d82tool.viewmodels.D82ViewModel
 import com.clj.fastble.BleManager
 import com.clj.fastble.callback.BleGattCallback
 import com.clj.fastble.callback.BleScanCallback

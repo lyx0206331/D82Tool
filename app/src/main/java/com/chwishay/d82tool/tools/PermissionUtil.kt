@@ -1,4 +1,4 @@
-package com.chwishay.d82.tools
+package com.chwishay.d82tool.tools
 
 import android.app.Activity
 import android.content.Intent

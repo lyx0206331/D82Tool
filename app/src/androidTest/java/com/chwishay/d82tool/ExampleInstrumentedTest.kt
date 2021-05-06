@@ -1,4 +1,4 @@
-package com.chwishay.d82
+package com.chwishay.d82tool
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,6 +1,9 @@
-package com.chwishay.d82.tools
+package com.chwishay.d82tool.tools
 
-import java.util.*
+import android.bluetooth.BluetoothGatt
+import com.clj.fastble.BleManager
+import com.clj.fastble.callback.BleGattCallback
+import com.clj.fastble.data.BleDevice
 
 //                       _ooOoo_
 //                      o8888888o
@@ -25,24 +28,9 @@ import java.util.*
 //             佛祖保佑             永无BUG
 /**
  * author:RanQing
- * date:2021/1/28 0028 13:40
+ * date:2021/3/8 0008 16:07
  * description:
  */
+fun BleDevice.isConnected(): Boolean = BleManager.getInstance().isConnected(this)
 
-data class BleUUID private constructor(
-    var serviceUUID: UUID? = null,
-    var charactWriteUUID: UUID? = null,
-    var charactNotifyUUID: UUID? = null
-) {
-    companion object {
-        val instance: BleUUID by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { BleUUID() }
-    }
-
-    private constructor() : this(null, null, null)
-
-    fun createExample() {
-        serviceUUID = UUID.fromString("0000fff0-0000-1000-8000-00805f9b34fb")
-        charactWriteUUID = UUID.fromString("0000fff3-0000-1000-8000-00805f9b34fb")
-        charactNotifyUUID = UUID.fromString("0000fff1-0000-1000-8000-00805f9b34fb")
-    }
-}
+fun BleDevice.connect(callback: BleGattCallback): BluetoothGatt = BleManager.getInstance().connect(this, callback)

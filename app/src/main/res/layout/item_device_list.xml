@@ -8,7 +8,7 @@
             type="android.view.View.OnClickListener" />
         <variable
             name="bleDev"
-            type="com.chwishay.d82.entity.BleDeviceInfo" />
+            type="com.chwishay.d82tool.entity.BleDeviceInfo" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:minWidth="100dp"
             android:textSize="@dimen/test_btn_font"
             android:textColor="@{bleDev.isConnected?@color/teal_200:@color/black_232323}"
-            android:text="@{bleDev.dev.name}"
+            android:text="@{bleDev.getShowName()}"
             tools:text="dev name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>

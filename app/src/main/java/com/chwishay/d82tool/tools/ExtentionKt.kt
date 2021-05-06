@@ -1,4 +1,4 @@
-package com.chwishay.d82.tools
+package com.chwishay.d82tool.tools
 
 import android.content.Context
 import android.os.Build
@@ -8,7 +8,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import com.chwishay.d82.BuildConfig
+import com.chwishay.d82tool.BuildConfig
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*

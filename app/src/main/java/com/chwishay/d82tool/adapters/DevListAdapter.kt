@@ -1,19 +1,14 @@
-package com.chwishay.d82.adapters
+package com.chwishay.d82tool.adapters
 
-import android.bluetooth.BluetoothGatt
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.chwishay.d82.databinding.ItemDeviceListBinding
-import com.chwishay.d82.entity.BleDeviceInfo
-import com.chwishay.d82.tools.logE
+import com.chwishay.d82tool.databinding.ItemDeviceListBinding
+import com.chwishay.d82tool.entity.BleDeviceInfo
 import com.clj.fastble.BleManager
 import com.clj.fastble.callback.BleGattCallback
-import com.clj.fastble.data.BleDevice
-import com.clj.fastble.data.BleMsg
-import com.clj.fastble.exception.BleException
 
 //                       _ooOoo_
 //                      o8888888o

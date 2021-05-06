@@ -1,11 +1,9 @@
-package com.chwishay.d82
+package com.chwishay.d82tool.viewmodels
 
-import android.app.Application
-import android.graphics.Typeface
-import com.chwishay.d82.tools.logE
-import com.clj.fastble.BleManager
-import com.clj.fastble.BuildConfig
-import com.tencent.mmkv.MMKV
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.chwishay.d82tool.entity.BleDeviceInfo
+import com.chwishay.d82tool.views.CheckableView
 
 //                       _ooOoo_
 //                      o8888888o
@@ -30,25 +28,15 @@ import com.tencent.mmkv.MMKV
 //             佛祖保佑             永无BUG
 /**
  * author:RanQing
- * date:2021/3/3 0003 16:21
+ * date:2021/3/8 0008 15:10
  * description:
  */
-class D82Application: Application() {
+class D82ViewModel: ViewModel() {
+    val connectedDev = MutableLiveData<BleDeviceInfo?>()
 
-    override fun onCreate() {
-        super.onCreate()
-//        Typeface.createFromAsset(assets, "font/fontawesome-webfont.ttf")
+    val devicesLiveData = MutableLiveData<ArrayList<BleDeviceInfo>>(arrayListOf())
 
-        val rootDir = MMKV.initialize(this)
+    val filterViewsLiveData = MutableLiveData<ArrayList<CheckableView>>(arrayListOf())
 
-        "MMKV_ROOTDIR".logE("mmkv root dir:$rootDir")
-
-        initBle()
-    }
-
-    private fun initBle() {
-        BleManager.getInstance().init(this)
-        BleManager.getInstance().enableLog(BuildConfig.DEBUG).setReConnectCount(1, 5000)
-            .setConnectOverTime(20000).setOperateTimeout(5000)
-    }
+    val bleData = MutableLiveData<ByteArray?>()
 }

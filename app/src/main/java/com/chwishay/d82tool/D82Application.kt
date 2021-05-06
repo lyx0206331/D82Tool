@@ -1,11 +1,10 @@
-package com.chwishay.d82.viewmodels
+package com.chwishay.d82tool
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.chwishay.d82.entity.BleDeviceInfo
-import com.chwishay.d82.views.CheckableView
-import com.clj.fastble.data.BleDevice
+import android.app.Application
+import com.chwishay.d82tool.tools.logE
+import com.clj.fastble.BleManager
+import com.clj.fastble.BuildConfig
+import com.tencent.mmkv.MMKV
 
 //                       _ooOoo_
 //                      o8888888o
@@ -30,15 +29,25 @@ import com.clj.fastble.data.BleDevice
 //             佛祖保佑             永无BUG
 /**
  * author:RanQing
- * date:2021/3/8 0008 15:10
+ * date:2021/3/3 0003 16:21
  * description:
  */
-class D82ViewModel: ViewModel() {
-    val connectedDev = MutableLiveData<BleDeviceInfo?>()
+class D82Application: Application() {
 
-    val devicesLiveData = MutableLiveData<ArrayList<BleDeviceInfo>>(arrayListOf())
+    override fun onCreate() {
+        super.onCreate()
+//        Typeface.createFromAsset(assets, "font/fontawesome-webfont.ttf")
 
-    val filterViewsLiveData = MutableLiveData<ArrayList<CheckableView>>(arrayListOf())
+        val rootDir = MMKV.initialize(this)
 
-    val bleData = MutableLiveData<ByteArray?>()
+        "MMKV_ROOTDIR".logE("mmkv root dir:$rootDir")
+
+        initBle()
+    }
+
+    private fun initBle() {
+        BleManager.getInstance().init(this)
+        BleManager.getInstance().enableLog(BuildConfig.DEBUG).setReConnectCount(1, 5000)
+            .setConnectOverTime(20000).setOperateTimeout(5000)
+    }
 }

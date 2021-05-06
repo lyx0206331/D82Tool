@@ -1,4 +1,4 @@
-package com.chwishay.d82
+package com.chwishay.d82tool
 
 import org.junit.Test
 

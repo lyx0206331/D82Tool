@@ -27,7 +27,7 @@
     </fragment>-->
     <fragment
         android:id="@+id/dataFragment"
-        android:name="com.chwishay.d82.ui.DataFragment"
+        android:name="com.chwishay.d82tool.ui.DataFragment"
         android:label="fragment_data"
         tools:layout="@layout/fragment_data" >
         <argument
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.chwishay.d82.ui.SettingFragment"
+        android:name="com.chwishay.d82tool.ui.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
     </fragment>

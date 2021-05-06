@@ -1,4 +1,4 @@
-package com.chwishay.d82.tools
+package com.chwishay.d82tool.tools
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
@@ -65,7 +65,7 @@ object D82ProtocolUtil {
     fun ByteArray.isIMUData() =
         this[0] == headBytes!![0] && this[1] == headBytes!![1] && this[size - 2] == tailBytes!![0] && this[size - 1] == tailBytes!![1]
 
-    fun ByteArray.parseImuData(): D82Entity? = if (this.size <= 44) {
+    fun ByteArray.parseImuData(): D82Entity? = if (this.size < 44) {
         "IMU_DATA".logE("数据不完整: ${this.contentToString()}")
         null
     } else {
@@ -85,7 +85,7 @@ object D82ProtocolUtil {
                 i
             }
         }
-//        "IMU_DATA".logE("startIndex: $startIndex, endIndex: $endIndex")
+        "IMU_DATA".logE("startIndex: $startIndex, endIndex: $endIndex")
         if (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
             this.sliceArray(IntRange(startIndex, endIndex)).takeIf { it.size % 44 == 0 }
                 ?.also { d ->

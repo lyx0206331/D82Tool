@@ -1,4 +1,4 @@
-package com.chwishay.d82.ui
+package com.chwishay.d82tool.ui
 
 import android.bluetooth.BluetoothGatt
 import android.os.Bundle
@@ -13,16 +13,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.chwishay.d82.R
-import com.chwishay.d82.databinding.FragmentDataBinding
-import com.chwishay.d82.entity.BleDeviceInfo
-import com.chwishay.d82.tools.*
-import com.chwishay.d82.tools.D82ProtocolUtil.getExoParams
-import com.chwishay.d82.tools.D82ProtocolUtil.getParamByIndex
-import com.chwishay.d82.tools.D82ProtocolUtil.parseImuData
-import com.chwishay.d82.viewmodels.D82ViewModel
-import com.chwishay.d82.views.CheckableView
-import com.chwishay.d82.views.DeviceListDialog
+import com.chwishay.d82tool.R
+import com.chwishay.d82tool.databinding.FragmentDataBinding
+import com.chwishay.d82tool.entity.BleDeviceInfo
+import com.chwishay.d82tool.tools.*
+import com.chwishay.d82tool.tools.D82ProtocolUtil.getExoParams
+import com.chwishay.d82tool.tools.D82ProtocolUtil.getParamByIndex
+import com.chwishay.d82tool.tools.D82ProtocolUtil.parseImuData
+import com.chwishay.d82tool.viewmodels.D82ViewModel
+import com.chwishay.d82tool.views.CheckableView
+import com.chwishay.d82tool.views.DeviceListDialog
 import com.clj.fastble.BleManager
 import com.clj.fastble.callback.BleNotifyCallback
 import com.clj.fastble.callback.BleRssiCallback
@@ -111,7 +111,7 @@ class DataFragment : Fragment() {
 //                    binding.tvOriginalData.text = ""
                     resources.getString(R.string.choose_dev)
                 } else {
-                    "${it.dev.name}\n${it.dev.mac}"
+                    "${it.getShowName()}\n${it.dev.mac}"
                 }
             }
             filters.observe(viewLifecycleOwner) {

@@ -1,4 +1,4 @@
-package com.chwishay.d82.ui
+package com.chwishay.d82tool.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.chwishay.d82.R
-import com.chwishay.d82.databinding.FragmentSettingBinding
+import com.chwishay.d82tool.databinding.FragmentSettingBinding
 
 /**
  * A simple [Fragment] subclass.
